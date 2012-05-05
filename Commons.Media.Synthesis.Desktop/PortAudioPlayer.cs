@@ -17,7 +17,7 @@ namespace Commons.Media.Synthesis
 			stream = new PortAudioOutputStream (
 				parameters.Channels,
 				PaSampleFormat.Int16,
-				parameters.BitsPerSample,
+				parameters.SamplesPerSecond,
 				0x1000,
 				StreamCallback,
 				IntPtr.Zero

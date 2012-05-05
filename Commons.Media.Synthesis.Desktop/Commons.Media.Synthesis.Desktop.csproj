@@ -30,9 +30,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="portaudio-sharp">
-      <HintPath>libs\portaudio-sharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -44,6 +41,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\portaudio-sharp\portaudio-sharp.csproj">
+      <Project>{46F2F4B1-6424-431F-8D30-F9D5EB465022}</Project>
+      <Name>portaudio-sharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
       <Name>Commons.Media.Synthesis.Common.Desktop</Name>
