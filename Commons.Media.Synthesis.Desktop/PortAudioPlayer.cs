@@ -16,7 +16,7 @@ namespace Commons.Media.Synthesis
 			this.q = queue;
 			stream = new PortAudioOutputStream (
 				parameters.Channels,
-				0,
+				PaSampleFormat.Int16,
 				parameters.BitsPerSample,
 				0x1000,
 				StreamCallback,

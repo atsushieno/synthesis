@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Commons.Media.Synthesis
 {
-	public abstract class MediaSample
+	public class MediaSample
 	{
 		public MediaSample (ArraySegment<byte> buffer, TimeSpan duration)
 		{

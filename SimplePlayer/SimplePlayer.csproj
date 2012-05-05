@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Commons.Media.Synthesis.Desktop</RootNamespace>
-    <AssemblyName>Commons.Media.Synthesis.Desktop</AssemblyName>
+    <ProjectGuid>{581B6730-84D4-454C-B253-9A901DCE342C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SimplePlayer</RootNamespace>
+    <AssemblyName>SimplePlayer</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -18,35 +18,39 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="portaudio-sharp">
-      <HintPath>libs\portaudio-sharp.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="SampleAudioQueue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="PortAudioPlayer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="libs\win32\portaudio.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Commons.Media.Synthesis.Desktop\Commons.Media.Synthesis.Desktop.csproj">
+      <Project>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</Project>
+      <Name>Commons.Media.Synthesis.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
       <Name>Commons.Media.Synthesis.Common.Desktop</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Commons.Media.Synthesis.Desktop\libs\win32\portaudio.dll">
+      <Link>portaudio.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
