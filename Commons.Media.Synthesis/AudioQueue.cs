@@ -3,6 +3,13 @@ using System.Net;
 
 namespace Commons.Media.Synthesis
 {
+	public enum AudioQueueStatus
+	{
+		Ongoing,
+		Completed,
+		Error
+	}
+
 	public interface IAudioQueue
 	{
 		void Close ();
@@ -10,6 +17,8 @@ namespace Commons.Media.Synthesis
 		IAsyncResult BeginGetNextSample (AsyncCallback callback, object state);
 
 		MediaSample EndGetNextSample (IAsyncResult result);
+
+		AudioQueueStatus Status { get; }
 
 		IAsyncResult BeginSeek (TimeSpan position, AsyncCallback callback, object state);
 
@@ -27,6 +36,8 @@ namespace Commons.Media.Synthesis
 		public abstract void Close ();
 
 		public abstract MediaSample GetNextSample ();
+
+		public abstract AudioQueueStatus Status { get; }
 
 		public abstract void Seek (TimeSpan position);
 

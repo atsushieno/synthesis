@@ -5,8 +5,14 @@ namespace Commons.Media.Synthesis
 {
 	public abstract class MediaSample
 	{
-		public abstract ArraySegment<byte> Buffer { get; }
+		public MediaSample (ArraySegment<byte> buffer, TimeSpan duration)
+		{
+			Buffer = buffer;
+			Duration = duration;
+		}
 
-		public abstract TimeSpan Duration { get; }
+		public ArraySegment<byte> Buffer { get; private set; }
+
+		public TimeSpan Duration { get; private set; }
 	}
 }
