@@ -20,6 +20,16 @@ namespace Commons.Media.Synthesis.Sample
 			Console.WriteLine (Configuration.VersionString);
 			*/
 			var player = new PortAudioPlayer (new SampleAudioQueue (), AudioParameters.Default);
+			/*
+			Console.WriteLine (player.PortAudioStream.IsStopped);
+			Console.WriteLine (player.PortAudioStream.IsActive);
+			Console.WriteLine (player.PortAudioStream.StreamInfo.sampleRate);
+			Console.WriteLine (player.PortAudioStream.StreamInfo.structVersion);
+			 */
+			player.Play ();
+			Console.WriteLine ("Type [CR] to stop it.");
+			Console.ReadLine ();
+			player.Stop ();
 		}
 	}
 }

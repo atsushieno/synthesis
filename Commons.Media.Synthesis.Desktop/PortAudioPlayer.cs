@@ -24,6 +24,10 @@ namespace Commons.Media.Synthesis
 			);
 		}
 
+		public PortAudioStream PortAudioStream {
+			get { return stream; }
+		}
+
 		MediaSample current_sample;
 		int continue_remains;
 

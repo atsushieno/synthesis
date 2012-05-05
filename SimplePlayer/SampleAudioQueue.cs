@@ -16,7 +16,6 @@ namespace Commons.Media.Synthesis.Sample
 		#region implemented abstract members of Commons.Media.Synthesis.AudioQueueSync
 		public override void Close ()
 		{
-			throw new System.NotImplementedException ();
 		}
 		
 		byte [] sample_bytes;
