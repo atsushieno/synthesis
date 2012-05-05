@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,10 +41,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\portaudio-sharp\portaudio-sharp.csproj">
-      <Project>{46F2F4B1-6424-431F-8D30-F9D5EB465022}</Project>
-      <Name>portaudio-sharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
       <Name>Commons.Media.Synthesis.Common.Desktop</Name>

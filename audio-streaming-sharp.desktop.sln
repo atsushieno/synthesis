@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Des
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlayer", "SimplePlayer\SimplePlayer.csproj", "{581B6730-84D4-454C-B253-9A901DCE342C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "portaudio-sharp", "..\portaudio-sharp\portaudio-sharp.csproj", "{46F2F4B1-6424-431F-8D30-F9D5EB465022}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "portaudio-sharp", "..\portaudio-sharp\portaudio2-sharp\portaudio-sharp.csproj", "{46F2F4B1-6424-431F-8D30-F9D5EB465022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,27 +15,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Release|Any CPU.Build.0 = Release|Any CPU
-		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{581B6730-84D4-454C-B253-9A901DCE342C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{581B6730-84D4-454C-B253-9A901DCE342C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581B6730-84D4-454C-B253-9A901DCE342C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581B6730-84D4-454C-B253-9A901DCE342C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8A1019-D5F2-4DD2-93FC-E981FE356390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SimplePlayer\SimplePlayer.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
