@@ -20,14 +20,16 @@ namespace Commons.Media.Synthesis.Sample
 		
 		byte [] sample_bytes;
 		MediaSample sample;
+		AudioQueueStatus status = AudioQueueStatus.Ongoing;
 
 		public override MediaSample GetNextSample ()
 		{
+			status = AudioQueueStatus.Completed;
 			return sample;
 		}
 
 		public override AudioQueueStatus Status {
-			get { return AudioQueueStatus.Ongoing; }
+			get { return status; }
 		}
 
 		public override void Seek (TimeSpan position)

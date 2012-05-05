@@ -34,12 +34,8 @@ namespace Commons.Media.Synthesis
 		PaStreamCallbackResult StreamCallback (byte[] output, int offset, int byteCount, PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, IntPtr userData)
 		{
 			while (true) {
-				switch (q.Status) {
-				case AudioQueueStatus.Completed:
-					return PaStreamCallbackResult.Complete;
-				case AudioQueueStatus.Error:
-					return PaStreamCallbackResult.Abort;
-				}
+				if (q.Status != AudioQueueStatus.Ongoing)
+					break;
 				if (current_sample == null || continue_remains <= 0) {
 					current_sample = q.GetNextSample ();
 					continue_remains = current_sample.Buffer.Count;
@@ -57,7 +53,14 @@ namespace Commons.Media.Synthesis
 				if (byteCount == 0)
 					break;
 			}
-			return PaStreamCallbackResult.Continue;
+			switch (q.Status) {
+			case AudioQueueStatus.Completed:
+				return PaStreamCallbackResult.Complete;
+			case AudioQueueStatus.Error:
+				return PaStreamCallbackResult.Abort;
+			default:
+				return PaStreamCallbackResult.Continue;
+			}
 		}
 		
 		public void Play ()
