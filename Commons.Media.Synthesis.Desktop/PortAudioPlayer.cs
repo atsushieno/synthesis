@@ -49,6 +49,7 @@ namespace Commons.Media.Synthesis
 					offset,
 					copySize
 				);
+				continue_remains -= copySize;
 				byteCount -= copySize;
 				Console.WriteLine ("!!!! " + x++ + " : " + byteCount);
 				if (byteCount == 0)
