@@ -19,7 +19,8 @@ namespace Commons.Media.Synthesis.Sample
 			Console.WriteLine (Configuration.DefaultOutputDevice);
 			Console.WriteLine (Configuration.VersionString);
 			*/
-			var player = new PortAudioPlayer (new SampleAudioQueue (), AudioParameters.Default, PaSampleFormat.Float32, 0x10000, null);
+			uint bufSize = 0x8000;
+			var player = new PortAudioPlayer (new SampleAudioQueue (bufSize), new AudioParameters () { Channels = 2, SamplesPerSecond = 44100, BitsPerSample = 32 }, PaSampleFormat.Float32, bufSize, null);
 			/*
 			Console.WriteLine (player.PortAudioStream.IsStopped);
 			Console.WriteLine (player.PortAudioStream.IsActive);

@@ -19,8 +19,9 @@ namespace Commons.Media.Synthesis.Sample
 
 	public class SampleAudioQueue : AudioQueueSync
 	{
-		public SampleAudioQueue ()
+		public SampleAudioQueue (uint bufferSize)
 		{
+			this.buffer_size = bufferSize;
 		}
 
 		#region implemented abstract members of Commons.Media.Synthesis.AudioQueueSync
@@ -28,30 +29,34 @@ namespace Commons.Media.Synthesis.Sample
 		{
 		}
 		
+		uint buffer_size;
 		byte [] sample_bytes;
 		MediaSample sample;
 		AudioQueueStatus status = AudioQueueStatus.Ongoing;
 
 		public override MediaSample GetNextSample ()
 		{
-            if (sample == null) {
-                var data = new PaTestData ();
-                var ms = new MemoryStream ();
-                BinaryWriter bw = new BinaryWriter (ms);
-                for (int i = 0; i < 0x10000 / 4; i++) {
-                    bw.Write (data.Sine [data.LeftPhase]);
-                    bw.Write (data.Sine [data.RightPhase]);
-                    data.LeftPhase++;
-                    if (data.LeftPhase >= data.Sine.Length)
-                        data.LeftPhase -= data.Sine.Length;
-                    data.RightPhase += 3;
-                    if (data.RightPhase >= data.Sine.Length)
-                        data.RightPhase -= data.Sine.Length;
-                }
-                bw.Close ();
-                sample_bytes = ms.ToArray ();
-		        sample = new MediaSample (new ArraySegment<byte> (sample_bytes, 0, sample_bytes.Length), TimeSpan.FromSeconds (100));
-            }
+			if (sample == null) {
+				var data = new PaTestData ();
+				var ms = new MemoryStream ();
+				BinaryWriter bw = new BinaryWriter (ms);
+				for (int i = 0; i < buffer_size; i++) {
+					bw.Write (data.Sine [data.LeftPhase]);
+					bw.Write (data.Sine [data.RightPhase]);
+					data.LeftPhase++;
+					if (data.LeftPhase >= data.Sine.Length)
+						data.LeftPhase -= data.Sine.Length;
+					data.RightPhase += 3;
+					if (data.RightPhase >= data.Sine.Length)
+						data.RightPhase -= data.Sine.Length;
+				}
+				bw.Close ();
+				sample_bytes = ms.ToArray ();
+				sample = new MediaSample (
+					new ArraySegment<byte> (sample_bytes, 0, sample_bytes.Length),
+					TimeSpan.FromMilliseconds (100)
+				);
+			}
 			//status = AudioQueueStatus.Completed;
 			return sample;
 		}

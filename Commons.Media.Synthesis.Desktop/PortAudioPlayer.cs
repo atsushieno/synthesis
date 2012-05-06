@@ -50,6 +50,7 @@ namespace Commons.Media.Synthesis
 					copySize
 				);
 				byteCount -= copySize;
+				Console.WriteLine ("!!!! " + x++ + " : " + byteCount);
 				if (byteCount == 0)
 					break;
 			}
@@ -62,6 +63,7 @@ namespace Commons.Media.Synthesis
 				return PaStreamCallbackResult.Continue;
 			}
 		}
+		int x;
 		
 		public void Play ()
 		{
