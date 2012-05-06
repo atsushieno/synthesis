@@ -1,16 +1,26 @@
 using System;
+using System.IO;
 using Commons.Media.Synthesis;
 
 namespace Commons.Media.Synthesis.Sample
 {
+    class PaTestData
+    {
+        public PaTestData ()
+        {
+            for (int i = 0; i < Sine.Length; i++)
+                Sine[i] = (float) Math.Sin (((double) i / Sine.Length) * Math.PI * 2);
+        }
+        public float [] Sine = new float [200];
+        public int LeftPhase;
+        public int RightPhase;
+        public string Message;
+    }
+
 	public class SampleAudioQueue : AudioQueueSync
 	{
 		public SampleAudioQueue ()
 		{
-			sample_bytes = new byte [0x1000];
-			for (int i = 0; i < sample_bytes.Length; i++)
-				sample_bytes [i] = 0x40;
-			sample = new MediaSample (new ArraySegment<byte> (sample_bytes, 0, sample_bytes.Length), TimeSpan.FromSeconds (1000));
 		}
 
 		#region implemented abstract members of Commons.Media.Synthesis.AudioQueueSync
@@ -24,7 +34,25 @@ namespace Commons.Media.Synthesis.Sample
 
 		public override MediaSample GetNextSample ()
 		{
-			status = AudioQueueStatus.Completed;
+            if (sample == null) {
+                var data = new PaTestData ();
+                var ms = new MemoryStream ();
+                BinaryWriter bw = new BinaryWriter (ms);
+                for (int i = 0; i < 0x10000 / 4; i++) {
+                    bw.Write (data.Sine [data.LeftPhase]);
+                    bw.Write (data.Sine [data.RightPhase]);
+                    data.LeftPhase++;
+                    if (data.LeftPhase >= data.Sine.Length)
+                        data.LeftPhase -= data.Sine.Length;
+                    data.RightPhase += 3;
+                    if (data.RightPhase >= data.Sine.Length)
+                        data.RightPhase -= data.Sine.Length;
+                }
+                bw.Close ();
+                sample_bytes = ms.ToArray ();
+		        sample = new MediaSample (new ArraySegment<byte> (sample_bytes, 0, sample_bytes.Length), TimeSpan.FromSeconds (100));
+            }
+			//status = AudioQueueStatus.Completed;
 			return sample;
 		}
 

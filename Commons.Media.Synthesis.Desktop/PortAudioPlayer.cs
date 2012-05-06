@@ -9,18 +9,18 @@ namespace Commons.Media.Synthesis
 		AudioQueueSync q;
 		PortAudioStream stream;
 
-		public PortAudioPlayer (AudioQueueSync queue, AudioParameters parameters)
+		public PortAudioPlayer (AudioQueueSync queue, AudioParameters parameters, PaSampleFormat sampleFormat, uint frames, object userData)
 		{
 			if (queue == null)
 				throw new ArgumentNullException ("queue");
 			this.q = queue;
 			stream = new PortAudioOutputStream (
 				parameters.Channels,
-				PaSampleFormat.Int16,
+				sampleFormat,
 				parameters.SamplesPerSecond,
-				0x1000,
+				frames,
 				StreamCallback,
-				IntPtr.Zero
+				userData
 			);
 		}
 

@@ -4,7 +4,7 @@ using Commons.Media.PortAudio;
 
 namespace Commons.Media.Synthesis.Sample
 {
-	class MainClass
+    class MainClass
 	{
 		public static void Main (string [] args)
 		{
@@ -19,7 +19,7 @@ namespace Commons.Media.Synthesis.Sample
 			Console.WriteLine (Configuration.DefaultOutputDevice);
 			Console.WriteLine (Configuration.VersionString);
 			*/
-			var player = new PortAudioPlayer (new SampleAudioQueue (), AudioParameters.Default);
+			var player = new PortAudioPlayer (new SampleAudioQueue (), AudioParameters.Default, PaSampleFormat.Float32, 0x10000, null);
 			/*
 			Console.WriteLine (player.PortAudioStream.IsStopped);
 			Console.WriteLine (player.PortAudioStream.IsActive);
