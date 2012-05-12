@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlayer", "SimplePlaye
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "portaudio-sharp", "..\portaudio-sharp\portaudio2-sharp\portaudio-sharp.csproj", "{46F2F4B1-6424-431F-8D30-F9D5EB465022}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes", "Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes.csproj", "{57E985AB-675B-4188-9AF5-621204BCFBDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{581B6730-84D4-454C-B253-9A901DCE342C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{581B6730-84D4-454C-B253-9A901DCE342C}.Release|Any CPU.ActiveCfg = Release|Any CPU
