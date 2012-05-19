@@ -3,15 +3,15 @@ using System.Net;
 
 namespace Commons.Media.Synthesis
 {
-	public class MediaSample
+	public class MediaSample<T>
 	{
-		public MediaSample (ArraySegment<byte> buffer, TimeSpan duration)
+		public MediaSample (ArraySegment<T> buffer, TimeSpan duration)
 		{
 			Buffer = buffer;
 			Duration = duration;
 		}
 
-		public ArraySegment<byte> Buffer { get; private set; }
+		public ArraySegment<T> Buffer { get; private set; }
 
 		public TimeSpan Duration { get; private set; }
 	}

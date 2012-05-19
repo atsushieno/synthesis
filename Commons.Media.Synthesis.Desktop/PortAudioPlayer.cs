@@ -4,12 +4,12 @@ using Commons.Media.Synthesis;
 
 namespace Commons.Media.Synthesis
 {
-	public class PortAudioPlayer
+	public class PortAudioPlayer<T>
 	{
-		AudioQueueSync q;
+		AudioQueueSync<T> q;
 		PortAudioStream stream;
 
-		public PortAudioPlayer (AudioQueueSync queue, AudioParameters parameters, PaSampleFormat sampleFormat, uint frames, object userData)
+		public PortAudioPlayer (AudioQueueSync<T> queue, AudioParameters parameters, PaSampleFormat sampleFormat, uint frames, object userData)
 		{
 			if (queue == null)
 				throw new ArgumentNullException ("queue");
@@ -28,7 +28,7 @@ namespace Commons.Media.Synthesis
 			get { return stream; }
 		}
 
-		MediaSample current_sample;
+		MediaSample<T> current_sample;
 		int continue_remains;
 
 		PaStreamCallbackResult StreamCallback (byte[] output, int offset, int byteCount, PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, IntPtr userData)

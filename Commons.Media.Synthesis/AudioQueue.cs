@@ -10,13 +10,13 @@ namespace Commons.Media.Synthesis
 		Error
 	}
 
-	public interface IAudioQueue
+	public interface IAudioQueue<T>
 	{
 		void Close ();
 
 		IAsyncResult BeginGetNextSample (AsyncCallback callback, object state);
 
-		MediaSample EndGetNextSample (IAsyncResult result);
+		MediaSample<T> EndGetNextSample (IAsyncResult result);
 
 		AudioQueueStatus Status { get; }
 
@@ -25,30 +25,30 @@ namespace Commons.Media.Synthesis
 		void EndSeek (IAsyncResult result);
 	}
 
-	public abstract class AudioQueueSync : IAudioQueue
+	public abstract class AudioQueueSync<T> : IAudioQueue<T>
 	{
 		protected AudioQueueSync ()
 		{
-			get_next_sample = new Func<MediaSample> (GetNextSample);
+			get_next_sample = new Func<MediaSample<T>> (GetNextSample);
 			seek = new Action<TimeSpan> (Seek);
 		}
 
 		public abstract void Close ();
 
-		public abstract MediaSample GetNextSample ();
+		public abstract MediaSample<T> GetNextSample ();
 
 		public abstract AudioQueueStatus Status { get; }
 
 		public abstract void Seek (TimeSpan position);
 
-		Func<MediaSample> get_next_sample;
+		Func<MediaSample<T>> get_next_sample;
 
 		public IAsyncResult BeginGetNextSample (AsyncCallback callback, object state)
 		{
 			return get_next_sample.BeginInvoke (callback, state);
 		}
 
-		public MediaSample EndGetNextSample (IAsyncResult result)
+		public MediaSample<T> EndGetNextSample (IAsyncResult result)
 		{
 			return get_next_sample.EndInvoke (result);
 		}

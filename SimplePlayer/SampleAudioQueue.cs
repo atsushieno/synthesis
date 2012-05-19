@@ -17,7 +17,7 @@ namespace Commons.Media.Synthesis.Sample
         public string Message;
     }
 
-	public class SampleAudioQueue : AudioQueueSync
+	public class SampleAudioQueue : AudioQueueSync<byte>
 	{
 		public SampleAudioQueue (uint bufferSize)
 		{
@@ -31,10 +31,10 @@ namespace Commons.Media.Synthesis.Sample
 		
 		uint buffer_size;
 		byte [] sample_bytes;
-		MediaSample sample;
+		MediaSample<byte> sample;
 		AudioQueueStatus status = AudioQueueStatus.Ongoing;
 
-		public override MediaSample GetNextSample ()
+		public override MediaSample<byte> GetNextSample ()
 		{
 			if (sample == null) {
 				var data = new PaTestData ();
@@ -52,7 +52,7 @@ namespace Commons.Media.Synthesis.Sample
 				}
 				bw.Close ();
 				sample_bytes = ms.ToArray ();
-				sample = new MediaSample (
+				sample = new MediaSample<byte> (
 					new ArraySegment<byte> (sample_bytes, 0, sample_bytes.Length),
 					TimeSpan.FromMilliseconds (100)
 				);

@@ -6,7 +6,7 @@ namespace Commons.Media.Synthesis.Sample
 {
     class MainClass
 	{
-		public static void Main (string [] args)
+		public static void Main (string[] args)
 		{
 			/*
 			Console.WriteLine (Configuration.HostApiCount);
@@ -20,7 +20,8 @@ namespace Commons.Media.Synthesis.Sample
 			Console.WriteLine (Configuration.VersionString);
 			*/
 			uint bufSize = 0x10000;
-			var player = new PortAudioPlayer (new SampleAudioQueue (bufSize), new AudioParameters () { Channels = 2, SamplesPerSecond = 44100, BitsPerSample = 32 }, PaSampleFormat.Float32, bufSize, null);
+			var player = new PortAudioPlayer<byte> (
+				new SampleAudioQueue (bufSize), new AudioParameters () { Channels = 2, SamplesPerSecond = 44100, BitsPerSample = 32 }, PaSampleFormat.Float32, bufSize, null);
 			/*
 			Console.WriteLine (player.PortAudioStream.IsStopped);
 			Console.WriteLine (player.PortAudioStream.IsActive);

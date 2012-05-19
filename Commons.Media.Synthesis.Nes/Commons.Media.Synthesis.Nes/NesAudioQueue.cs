@@ -3,11 +3,11 @@ using Commons.Media.Synthesis;
 
 namespace Commons.Media.Synthesis.Nes
 {
-	public class NesAudioQueue : AudioQueueSync
+	public class NesAudioQueue<T> : AudioQueueSync<T>
 	{
 		NesMachine machine;
 		
-		public NesAudioQueue (byte[] nsf)
+		public NesAudioQueue (byte [] nsf)
 		{
 			if (nsf == null)
 				throw new ArgumentNullException ("nsf");
@@ -28,7 +28,7 @@ namespace Commons.Media.Synthesis.Nes
 			throw new System.NotImplementedException ();
 		}
 
-		public override MediaSample GetNextSample ()
+		public override MediaSample<T> GetNextSample ()
 		{
 			throw new System.NotImplementedException ();
 		}
