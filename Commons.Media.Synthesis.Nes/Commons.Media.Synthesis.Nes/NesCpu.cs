@@ -19,26 +19,53 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Commons.Media.Synthesis.Nes
 {
-	public class Callbacks
-	{
-		public Callbacks ()
-		{
-			Read = new Dictionary<int,ReadHandler> ();
-			Write = new Dictionary<int,WriteHandler> ();
-			Call = new Dictionary<int,CallHandler> ();
-		}
-		public IDictionary<int,ReadHandler> Read { get; set; }
-		public IDictionary<int,WriteHandler> Write { get; set; }
-		public IDictionary<int,CallHandler> Call { get; set; }
-	}
-	
 	public delegate byte ReadHandler (NesCpu cpu, ushort address);
 	public delegate void WriteHandler (NesCpu cpu, ushort address, byte data);
 	public delegate byte CallHandler (NesCpu cpu, ushort address, byte data);
 
+	public abstract class Callbacks
+	{
+		public abstract class Set<T>
+		{
+			public abstract T this [int address] { get; set; }
+			public abstract bool TryGet (int address, out T handler);
+		}
+	
+		public abstract Set<ReadHandler> Read { get; }
+		public abstract Set<WriteHandler> Write { get; }
+		public abstract Set<CallHandler> Call { get; }
+	}
+	
+	public class SimpleCallbacks : Callbacks
+	{
+		SimpleSet<ReadHandler> reads = new SimpleSet<ReadHandler> ();
+		SimpleSet<WriteHandler> writes = new SimpleSet<WriteHandler> ();
+		SimpleSet<CallHandler> calls  = new SimpleSet<CallHandler> ();
+		
+		class SimpleSet<T> : Callbacks.Set<T>
+		{
+			Dictionary<int,T> d = new Dictionary<int,T> ();
+			
+			public override T this [int address] {
+				get { return d [address]; }
+				set { d [address] = value; }
+			}
+			
+			public override bool TryGet (int address, out T handler)
+			{
+				return d.TryGetValue (address, out handler);
+			}
+		}
+		
+		public override Set<ReadHandler> Read { get { return reads; } }
+		public override Set<WriteHandler> Write { get { return writes; } }
+		public override Set<CallHandler> Call { get { return calls; } }		
+	}
+	
 	public class NesMachine
 	{
 		public NesMachine ()
@@ -89,13 +116,21 @@ namespace Commons.Media.Synthesis.Nes
 		Registers Registers { get; set; }
 		byte [] Memory { get; set; }
 		
-		public Callbacks Callbacks { get; private set; }
+		Callbacks callbacks;
+		public Callbacks Callbacks {
+			get { return callbacks; }
+			set {
+				if (value == null)
+					throw new ArgumentNullException ();
+				callbacks = value;
+			}
+		}
 		
 		public NesCpu ()
 		{
 			Registers = new Registers ();
 			Memory = new byte [0x10000];
-			Callbacks = new Callbacks ();
+			Callbacks = new SimpleCallbacks ();
 		}
 		
 		public void Load (byte[] data)
@@ -604,11 +639,37 @@ namespace Commons.Media.Synthesis.Nes
 		}
 	}
 	
+	public enum NesCpuState
+	{
+		Stopped,
+		Running,
+		Paused
+	}
+	
 	// Cpu private stuff goes here.
 	public partial class NesCpu
 	{
+		bool running;
+		bool pause, paused;
+		ManualResetEvent pause_wait_handle = new ManualResetEvent (false);
+		
+		public NesCpuState State {
+			get { return paused ? NesCpuState.Paused : running ? NesCpuState.Running : NesCpuState.Stopped; }
+		}
+		
+		public void Pause ()
+		{
+			pause = true; // and let main loop pause by itself.
+		}
+		
+		public void Resume ()
+		{
+			pause_wait_handle.Set ();
+		}
+
 		void DoRun ()
 		{
+			running = true;
 			byte [] memory = Memory;
 			ushort ea = 0;
 			byte a = 0, x = 0, y = 0, p = 0, s = 0;
@@ -645,7 +706,7 @@ namespace Commons.Media.Synthesis.Nes
 			// memory operations.
 			Action<ushort,byte> putMemory = (addr, data) => {
 				WriteHandler cb;
-				if (Callbacks.Write.TryGetValue (addr, out cb))
+				if (Callbacks.Write.TryGet (addr, out cb))
 					cb (this, addr, data);
 				else
 					memory [addr] = data;
@@ -653,7 +714,7 @@ namespace Commons.Media.Synthesis.Nes
 			
 			Func<ushort,byte> getMemory = (addr) => {
 				ReadHandler cb;
-				if (Callbacks.Read.TryGetValue (addr, out cb))
+				if (Callbacks.Read.TryGet (addr, out cb))
 					return cb (this, addr);
 				else
 					return memory [addr];
@@ -1109,7 +1170,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				adrmode (op.Ticks);
 				pc = ea;
 				CallHandler cb;
-				if (Callbacks.Call.TryGetValue (ea, out cb)) {
+				if (Callbacks.Call.TryGet (ea, out cb)) {
 					ushort addr;
 					externalize ();
 					if ((addr = cb (this, ea, 0)) != 0) {
@@ -1128,7 +1189,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				pc--;
 				adrmode (op.Ticks);
 				CallHandler cb;
-				if (Callbacks.Call.TryGetValue (ea, out cb)) {
+				if (Callbacks.Call.TryGet (ea, out cb)) {
 					ushort addr;
 					externalize ();
 					if ((addr = cb (this, ea, 0)) != 0) {
@@ -1163,7 +1224,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				unchecked {
 					ushort hdlr = (ushort) (getMemory (0xFFFE) + (getMemory (0xFFFF) << 8));
 					CallHandler cb;
-					if (Callbacks.Call.TryGetValue (hdlr, out cb)) {
+					if (Callbacks.Call.TryGet (hdlr, out cb)) {
 						ushort addr;
 						externalize ();
 						if ((addr = cb (this, (ushort) (pc - 2), 0)) != 0) {
@@ -1246,7 +1307,11 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 			
 			// Now we run things with all those delegates above.
 			
-			while (true) {
+			while (running) {
+				if (pause) {
+					pause = false;
+					pause_wait_handle.WaitOne ();
+				}
 				var b = Memory [pc++];
 				var code = OpCodes [b];
 				if (code == null)
@@ -1262,7 +1327,8 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 		
 		void TickIf (bool eval)
 		{
-			// do nothing
+			if (eval)
+				Tick (1); // maybe?
 		}
 		
 		int DoDisassemble (ushort addr, out string format)
