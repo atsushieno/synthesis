@@ -63,17 +63,17 @@ namespace Commons.Media.Synthesis.Nes
 		
 		byte ReadApu (NesCpu cpu, ushort address)
 		{
-			throw new NotImplementedException ();
+			return cpu.Machine.Apu.GetRegister (address);
 		}
 		
 		void WriteApu (NesCpu cpu, ushort address, byte data)
 		{
-			throw new NotImplementedException ();
+			cpu.Machine.Apu.SetRegister (address, data);
 		}
 		
 		byte CallApu (NesCpu cpu, ushort address, byte data)
 		{
-			throw new NotImplementedException ();
+			throw new CpuInvalidOperationException ("Call operation to APU is not supported");
 		}
 		
 		class Nes2a03Set<T> : NesCallbacks.Set<T>

@@ -26,12 +26,10 @@ namespace Commons.Media.Synthesis.Nes
 	public class NesMachine
 	{
 		public NesMachine ()
-			: this (new NesCpu (), new NesPpu (), new NesApu ())
 		{
-		}
-		
-		public NesMachine (NesCpu cpu, NesPpu ppu, NesApu apu)
-		{
+			Cpu = new NesCpu (this);
+			Ppu = new NesPpu (this);
+			Apu = new NesApu (this);
 		}
 		
 		public NesCpu Cpu { get; set; }
@@ -41,6 +39,9 @@ namespace Commons.Media.Synthesis.Nes
 	
 	public class NesPpu
 	{
+		internal NesPpu (NesMachine machine)
+		{
+		}
 		// TODO?
 	}
 	
@@ -70,6 +71,15 @@ namespace Commons.Media.Synthesis.Nes
 	
 	public partial class NesCpu
 	{
+		internal NesCpu (NesMachine machine)
+		{
+			Machine = machine;
+			Registers = new Registers ();
+			Memory = new byte [0x10000];
+			NesCallbacks = new SimpleNesCallbacks ();
+		}
+		
+		public NesMachine Machine { get; private set; }
 		Registers Registers { get; set; }
 		byte [] Memory { get; set; }
 		
@@ -81,13 +91,6 @@ namespace Commons.Media.Synthesis.Nes
 					throw new ArgumentNullException ();
 				callbacks = value;
 			}
-		}
-		
-		public NesCpu ()
-		{
-			Registers = new Registers ();
-			Memory = new byte [0x10000];
-			NesCallbacks = new SimpleNesCallbacks ();
 		}
 		
 		public void Load (byte[] data)

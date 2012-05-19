@@ -6,23 +6,15 @@ namespace Commons.Media.Synthesis.Nes
 {
 	public class NesApu
 	{
-		public NesApu ()
-			: this (new SoundModule ())
+		internal NesApu (NesMachine machine)
 		{
-		}
-		
-		public NesApu (SoundModule module)
-		{
-			if (module == null)
-				throw new ArgumentNullException ("module");
-			
 			regs = new byte [0x16];
 			square1 = new SquareOscillator (regs, 0);
 			square2 = new SquareOscillator (regs, 4);
 			triangle = new TriangleOscillator (regs);
 			noise = new NoiseOscillator (regs);
 			dmc = new DeltaModulator (regs);
-			Output = module;
+			Output = new SoundModule ();
 			
 			oscillators = new SoundGenerator [] { square1, square2, triangle, noise, dmc };
 		}
@@ -38,6 +30,11 @@ namespace Commons.Media.Synthesis.Nes
 		public SoundModule Output { get; private set; }
 		
 		// Here I omit index range check to maximize code inlining (ABC would still work with my own code, but inline is not likely).
+		public byte GetRegister (int position)
+		{
+			return regs [position - 0x4000];
+		}
+
 		public void SetRegister (int position, byte value)
 		{
 			regs [position - 0x4000] = value;
