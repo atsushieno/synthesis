@@ -23,49 +23,6 @@ using System.Threading;
 
 namespace Commons.Media.Synthesis.Nes
 {
-	public delegate byte ReadHandler (NesCpu cpu, ushort address);
-	public delegate void WriteHandler (NesCpu cpu, ushort address, byte data);
-	public delegate byte CallHandler (NesCpu cpu, ushort address, byte data);
-
-	public abstract class Callbacks
-	{
-		public abstract class Set<T>
-		{
-			public abstract T this [int address] { get; set; }
-			public abstract bool TryGet (int address, out T handler);
-		}
-	
-		public abstract Set<ReadHandler> Read { get; }
-		public abstract Set<WriteHandler> Write { get; }
-		public abstract Set<CallHandler> Call { get; }
-	}
-	
-	public class SimpleCallbacks : Callbacks
-	{
-		SimpleSet<ReadHandler> reads = new SimpleSet<ReadHandler> ();
-		SimpleSet<WriteHandler> writes = new SimpleSet<WriteHandler> ();
-		SimpleSet<CallHandler> calls  = new SimpleSet<CallHandler> ();
-		
-		class SimpleSet<T> : Callbacks.Set<T>
-		{
-			Dictionary<int,T> d = new Dictionary<int,T> ();
-			
-			public override T this [int address] {
-				get { return d [address]; }
-				set { d [address] = value; }
-			}
-			
-			public override bool TryGet (int address, out T handler)
-			{
-				return d.TryGetValue (address, out handler);
-			}
-		}
-		
-		public override Set<ReadHandler> Read { get { return reads; } }
-		public override Set<WriteHandler> Write { get { return writes; } }
-		public override Set<CallHandler> Call { get { return calls; } }		
-	}
-	
 	public class NesMachine
 	{
 		public NesMachine ()
@@ -116,8 +73,8 @@ namespace Commons.Media.Synthesis.Nes
 		Registers Registers { get; set; }
 		byte [] Memory { get; set; }
 		
-		Callbacks callbacks;
-		public Callbacks Callbacks {
+		NesCallbacks callbacks;
+		public NesCallbacks NesCallbacks {
 			get { return callbacks; }
 			set {
 				if (value == null)
@@ -130,7 +87,7 @@ namespace Commons.Media.Synthesis.Nes
 		{
 			Registers = new Registers ();
 			Memory = new byte [0x10000];
-			Callbacks = new SimpleCallbacks ();
+			NesCallbacks = new SimpleNesCallbacks ();
 		}
 		
 		public void Load (byte[] data)
@@ -706,7 +663,7 @@ namespace Commons.Media.Synthesis.Nes
 			// memory operations.
 			Action<ushort,byte> putMemory = (addr, data) => {
 				WriteHandler cb;
-				if (Callbacks.Write.TryGet (addr, out cb))
+				if (NesCallbacks.Write.TryGet (addr, out cb))
 					cb (this, addr, data);
 				else
 					memory [addr] = data;
@@ -714,7 +671,7 @@ namespace Commons.Media.Synthesis.Nes
 			
 			Func<ushort,byte> getMemory = (addr) => {
 				ReadHandler cb;
-				if (Callbacks.Read.TryGet (addr, out cb))
+				if (NesCallbacks.Read.TryGet (addr, out cb))
 					return cb (this, addr);
 				else
 					return memory [addr];
@@ -1170,7 +1127,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				adrmode (op.Ticks);
 				pc = ea;
 				CallHandler cb;
-				if (Callbacks.Call.TryGet (ea, out cb)) {
+				if (NesCallbacks.Call.TryGet (ea, out cb)) {
 					ushort addr;
 					externalize ();
 					if ((addr = cb (this, ea, 0)) != 0) {
@@ -1189,7 +1146,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				pc--;
 				adrmode (op.Ticks);
 				CallHandler cb;
-				if (Callbacks.Call.TryGet (ea, out cb)) {
+				if (NesCallbacks.Call.TryGet (ea, out cb)) {
 					ushort addr;
 					externalize ();
 					if ((addr = cb (this, ea, 0)) != 0) {
@@ -1224,7 +1181,7 @@ setNVZC (0 != (_s & 0x80), !(0 != ((a ^ b) & 0x80) && 0 != ((a ^ _s) & 0x80)), _
 				unchecked {
 					ushort hdlr = (ushort) (getMemory (0xFFFE) + (getMemory (0xFFFF) << 8));
 					CallHandler cb;
-					if (Callbacks.Call.TryGet (hdlr, out cb)) {
+					if (NesCallbacks.Call.TryGet (hdlr, out cb)) {
 						ushort addr;
 						externalize ();
 						if ((addr = cb (this, (ushort) (pc - 2), 0)) != 0) {

@@ -49,6 +49,7 @@
     <Compile Include="Commons.Media.Synthesis.Nes\NesAudioQueue.cs" />
     <Compile Include="Commons.Media.Synthesis.Nes\NesCpu.cs" />
     <Compile Include="Commons.Media.Synthesis.Nes\SoundModule.cs" />
+    <Compile Include="Commons.Media.Synthesis.Nes\NesCallbacks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Droid.csproj">
