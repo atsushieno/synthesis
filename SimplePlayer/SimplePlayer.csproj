@@ -50,11 +50,20 @@
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
       <Name>Commons.Media.Synthesis.Common.Desktop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes.csproj">
+      <Project>{57E985AB-675B-4188-9AF5-621204BCFBDD}</Project>
+      <Name>Commons.Media.Synthesis.Nes</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Commons.Media.Synthesis.Desktop\libs\win32\portaudio.dll">
       <Link>portaudio.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="enotest.nsf">
+      <LogicalName>enotest.nsf</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -1,5 +1,8 @@
 using System;
+using System.IO;
+using System.Reflection;
 using Commons.Media.Synthesis;
+using Commons.Media.Synthesis.Nes;
 using Commons.Media.PortAudio;
 
 namespace Commons.Media.Synthesis.Sample
@@ -7,6 +10,17 @@ namespace Commons.Media.Synthesis.Sample
     class MainClass
 	{
 		public static void Main (string[] args)
+		{
+			var nsfStream = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("enotest.nsf");
+			var nsf = new byte [nsfStream.Length];
+			nsfStream.Read (nsf, 0, nsf.Length);
+			nsfStream.Close ();
+			var q = new NesAudioQueue<byte> (nsf);
+			var smp = q.GetNextSample ();
+			Console.WriteLine (smp.Buffer.Array.Length);
+		}
+		
+		public static void Main2 (string[] args)
 		{
 			/*
 			Console.WriteLine (Configuration.HostApiCount);
