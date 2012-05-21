@@ -39,6 +39,7 @@
     <Compile Include="Commons.Media.Synthesis.Nes\SoundModule.cs" />
     <Compile Include="Commons.Media.Synthesis.Nes\NesAudioQueue.cs" />
     <Compile Include="Commons.Media.Synthesis.Nes\NesCallbacks.cs" />
+    <Compile Include="Commons.Media.Synthesis.Nes\NesPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">

@@ -14,7 +14,6 @@ namespace Commons.Media.Synthesis.Nes
 			triangle = new TriangleOscillator (regs);
 			noise = new NoiseOscillator (regs);
 			dmc = new DeltaModulator (regs);
-			Output = new SoundModule ();
 			
 			oscillators = new SoundGenerator [] { square1, square2, triangle, noise, dmc };
 		}
@@ -26,8 +25,6 @@ namespace Commons.Media.Synthesis.Nes
 		readonly byte [] regs;
 
 		SoundGenerator [] oscillators;
-
-		public SoundModule Output { get; private set; }
 		
 		// Here I omit index range check to maximize code inlining (ABC would still work with my own code, but inline is not likely).
 		public byte GetRegister (int position)

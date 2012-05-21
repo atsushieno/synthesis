@@ -8,10 +8,12 @@ namespace Commons.Media.Synthesis.Nes
 
 	public class SoundModule
 	{
-		public SoundModule ()
+		public SoundModule (NesApu apu)
 		{
+			this.apu = apu;
 		}
 		
+		NesApu apu;
 		bool running;
 		bool pause;
 		ManualResetEvent pause_wait_handle = new ManualResetEvent (false);
@@ -40,6 +42,7 @@ namespace Commons.Media.Synthesis.Nes
 		}
 		
 		public event GenerateSoundHandler GenerateSound;
+		public event Action<ArraySegment<byte>> NewBufferArrived;
 	}
 }
 
