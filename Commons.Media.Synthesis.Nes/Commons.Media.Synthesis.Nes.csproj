@@ -46,6 +46,10 @@
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
       <Name>Commons.Media.Synthesis.Common.Desktop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming\Commons.Media.Streaming.csproj">
+      <Project>{40FBE4F7-5F45-4E15-A198-436866ABEC12}</Project>
+      <Name>Commons.Media.Streaming</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commons.Media.Synthesis.Nes\" />

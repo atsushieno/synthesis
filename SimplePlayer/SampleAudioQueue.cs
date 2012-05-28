@@ -16,7 +16,8 @@ namespace Commons.Media.Synthesis.Sample
         public int RightPhase;
         public string Message;
     }
-
+	
+	[Obsolete]
 	public class SampleAudioQueue : AudioQueueSync<byte>
 	{
 		public SampleAudioQueue (uint bufferSize)

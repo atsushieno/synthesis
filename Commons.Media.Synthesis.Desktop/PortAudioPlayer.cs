@@ -2,8 +2,12 @@ using System;
 using Commons.Media.PortAudio;
 using Commons.Media.Synthesis;
 
-namespace Commons.Media.Synthesis
+namespace Commons.Media.Synthesis.Desktop
 {
+	[Obsolete]
+	// What was likely wrong with this idea is, it is designed to be totally pull-based by PaStreamCallback
+	// but audio queue should not be requested buffers at that time.
+	// AudioQueue should not be responsible for buffering. Maybe AudioQueue idea is wrong.
 	public class PortAudioPlayer<T>
 	{
 		AudioQueueSync<T> q;

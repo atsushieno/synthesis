@@ -3,13 +3,15 @@ using System.Net;
 
 namespace Commons.Media.Synthesis
 {
+	[Obsolete]
 	public enum AudioQueueStatus
 	{
 		Ongoing,
 		Completed,
 		Error
 	}
-
+	
+	[Obsolete]
 	public interface IAudioQueue<T>
 	{
 		void Close ();
@@ -25,6 +27,7 @@ namespace Commons.Media.Synthesis
 		void EndSeek (IAsyncResult result);
 	}
 
+	[Obsolete]
 	public abstract class AudioQueueSync<T> : IAudioQueue<T>
 	{
 		protected AudioQueueSync ()

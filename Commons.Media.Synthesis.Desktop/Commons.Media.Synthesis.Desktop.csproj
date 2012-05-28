@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,6 +34,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="PortAudioPlayer.cs" />
+    <Compile Include="PortAudioStreamPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\win32\portaudio.dll">
@@ -44,6 +45,10 @@
     <ProjectReference Include="..\..\portaudio-sharp\portaudio2-sharp\portaudio-sharp.csproj">
       <Project>{46F2F4B1-6424-431F-8D30-F9D5EB465022}</Project>
       <Name>portaudio-sharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming\Commons.Media.Streaming.csproj">
+      <Project>{40FBE4F7-5F45-4E15-A198-436866ABEC12}</Project>
+      <Name>Commons.Media.Streaming</Name>
     </ProjectReference>
     <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">
       <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
