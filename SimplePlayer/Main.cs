@@ -16,7 +16,7 @@ namespace Commons.Media.Synthesis.Sample
 			var nsf = new byte [nsfStream.Length];
 			nsfStream.Read (nsf, 0, nsf.Length);
 			nsfStream.Close ();
-			var p = new NesPlayer (nsf);
+			var p = new PortAudioStreamPlayer (new NesMediaBufferGenerator (nsf), AudioParameters.Default, PaSampleFormat.Int8, 0x4000, null);
 			p.Play ();
 		}
 		

@@ -1,3 +1,4 @@
+/*
 using System;
 using Commons.Media.Streaming;
 using Commons.Media.Synthesis;
@@ -64,4 +65,4 @@ namespace Commons.Media.Synthesis.Nes
 	}
 	
 }
-
+*/

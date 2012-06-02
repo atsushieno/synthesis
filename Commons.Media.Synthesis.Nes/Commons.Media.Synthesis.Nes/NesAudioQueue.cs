@@ -1,3 +1,4 @@
+/*
 using System;
 using Commons.Media.Synthesis;
 using System.Threading;
@@ -33,4 +34,4 @@ namespace Commons.Media.Synthesis.Nes
 		}
 	}
 }
-
+*/
