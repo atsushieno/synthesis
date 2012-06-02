@@ -41,13 +41,13 @@
       <Project>{46F2F4B1-6424-431F-8D30-F9D5EB465022}</Project>
       <Name>portaudio-sharp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Commons.Media.Streaming.Desktop\Commons.Media.Streaming.PortAudio.csproj">
+    <ProjectReference Include="..\Commons.Media.Streaming.PortAudio\Commons.Media.Streaming.PortAudio.csproj">
       <Project>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</Project>
       <Name>Commons.Media.Streaming.PortAudio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Commons.Media.Synthesis.Nes.Desktop\Commons.Media.Synthesis.Nes.csproj">
+    <ProjectReference Include="..\Commons.Media.Synthesis.Nes.PortAudio\Commons.Media.Synthesis.Nes.PortAudio.csproj">
       <Project>{57E985AB-675B-4188-9AF5-621204BCFBDD}</Project>
-      <Name>Commons.Media.Synthesis.Nes</Name>
+      <Name>Commons.Media.Synthesis.Nes.PortAudio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

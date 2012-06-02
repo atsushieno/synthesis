@@ -34,7 +34,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Commons.Media.Streaming.Desktop\Commons.Media.Streaming.PortAudio.csproj">
+    <ProjectReference Include="..\Commons.Media.Streaming.PortAudio\Commons.Media.Streaming.PortAudio.csproj">
       <Project>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</Project>
       <Name>Commons.Media.Streaming.PortAudio</Name>
     </ProjectReference>
