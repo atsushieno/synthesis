@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Droid", "Commons.Media.Synthesis.Droid\Commons.Media.Synthesis.Droid.csproj", "{B2FFD350-AA50-4864-BC4B-441842E37CDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Streaming.Android", "..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming.Android\Commons.Media.Streaming.Android.csproj", "{29F07D4A-86F1-4615-BFAD-2097DF99986E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Common.Droid", "Commons.Media.Synthesis.Common.Droid.csproj", "{5002C3DC-012D-44FF-B0BA-259BFE082566}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes.Droid", "Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes.Droid.csproj", "{2A4ABEC8-B97B-44ED-8BE2-88479B12B9E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes.Android", "..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Synthesis.Nes.Android\Commons.Media.Synthesis.Nes.Android.csproj", "{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,21 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A4ABEC8-B97B-44ED-8BE2-88479B12B9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A4ABEC8-B97B-44ED-8BE2-88479B12B9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A4ABEC8-B97B-44ED-8BE2-88479B12B9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A4ABEC8-B97B-44ED-8BE2-88479B12B9E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5002C3DC-012D-44FF-B0BA-259BFE082566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5002C3DC-012D-44FF-B0BA-259BFE082566}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5002C3DC-012D-44FF-B0BA-259BFE082566}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5002C3DC-012D-44FF-B0BA-259BFE082566}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2FFD350-AA50-4864-BC4B-441842E37CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2FFD350-AA50-4864-BC4B-441842E37CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2FFD350-AA50-4864-BC4B-441842E37CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2FFD350-AA50-4864-BC4B-441842E37CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F07D4A-86F1-4615-BFAD-2097DF99986E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F07D4A-86F1-4615-BFAD-2097DF99986E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F07D4A-86F1-4615-BFAD-2097DF99986E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F07D4A-86F1-4615-BFAD-2097DF99986E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Commons.Media.Synthesis.Droid\Commons.Media.Synthesis.Droid.csproj
+		StartupItem = ..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming.Android\Commons.Media.Streaming.Android.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

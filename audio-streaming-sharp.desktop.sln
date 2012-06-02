@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Common.Desktop", "Commons.Media.Synthesis.Common.Desktop.csproj", "{4E9DA0E3-53ED-491E-B270-57FC7C451F56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Desktop", "Commons.Media.Synthesis.Desktop\Commons.Media.Synthesis.Desktop.csproj", "{DA8A1019-D5F2-4DD2-93FC-E981FE356390}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePlayer", "SimplePlayer\SimplePlayer.csproj", "{581B6730-84D4-454C-B253-9A901DCE342C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "portaudio-sharp", "..\portaudio-sharp\portaudio2-sharp\portaudio-sharp.csproj", "{46F2F4B1-6424-431F-8D30-F9D5EB465022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes", "Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes.csproj", "{57E985AB-675B-4188-9AF5-621204BCFBDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Streaming.PortAudio", "Commons.Media.Streaming.Desktop\Commons.Media.Streaming.PortAudio.csproj", "{DA8A1019-D5F2-4DD2-93FC-E981FE356390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Streaming", "..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming\Commons.Media.Streaming.csproj", "{40FBE4F7-5F45-4E15-A198-436866ABEC12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes", "Commons.Media.Synthesis.Nes.Desktop\Commons.Media.Synthesis.Nes.csproj", "{57E985AB-675B-4188-9AF5-621204BCFBDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +15,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{40FBE4F7-5F45-4E15-A198-436866ABEC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40FBE4F7-5F45-4E15-A198-436866ABEC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40FBE4F7-5F45-4E15-A198-436866ABEC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40FBE4F7-5F45-4E15-A198-436866ABEC12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F2F4B1-6424-431F-8D30-F9D5EB465022}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E9DA0E3-53ED-491E-B270-57FC7C451F56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57E985AB-675B-4188-9AF5-621204BCFBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU

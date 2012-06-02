@@ -1,0 +1,9 @@
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/bin/Debug/Commons.Media.Synthesis.Nes.dll.mdb
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/bin/Debug/Commons.Media.Synthesis.Nes.dll
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/bin/Debug/Commons.Media.Synthesis.Nes.apk
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/obj/Debug/android/bin/Commons.Media.Synthesis.Nes.apk
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/obj/Debug/R.cs.flag
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/bin/Debug/Commons.Media.Synthesis.Nes-Signed.apk
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/obj/Debug/uploadflags.txt
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/obj/Debug/Commons.Media.Synthesis.Nes.dll
+/svn/commons-music-prog/synthesis/Commons.Media.Synthesis.Nes.Android/obj/Debug/Commons.Media.Synthesis.Nes.dll.mdb

@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Commons.Media.Synthesis.Desktop</RootNamespace>
-    <AssemblyName>Commons.Media.Synthesis.Desktop</AssemblyName>
+    <RootNamespace>Commons.Media.Streaming.PortAudio</RootNamespace>
+    <AssemblyName>Commons.Media.Streaming</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,8 +33,31 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="PortAudioPlayer.cs" />
-    <Compile Include="PortAudioStreamPlayer.cs" />
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\AbstractBufferedMediaPlayer.cs">
+      <Link>Commons.Media.Streaming\AbstractBufferedMediaPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\AudioParameters.cs">
+      <Link>Commons.Media.Streaming\AudioParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\BufferEmptyOperation.cs">
+      <Link>Commons.Media.Streaming\BufferEmptyOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\BufferFullOperation.cs">
+      <Link>Commons.Media.Streaming\BufferFullOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\IBufferedMediaPlayer.cs">
+      <Link>Commons.Media.Streaming\IBufferedMediaPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\IMediaBufferGenerator.cs">
+      <Link>Commons.Media.Streaming\IMediaBufferGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\IMediaPlayer.cs">
+      <Link>Commons.Media.Streaming\IMediaPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Streaming\Commons.Media.Streaming\IMediaSample.cs">
+      <Link>Commons.Media.Streaming\IMediaSample.cs</Link>
+    </Compile>
+    <Compile Include="Commons.Media.Streaming.PortAudio\PortAudioStreamPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\win32\portaudio.dll">
@@ -46,13 +69,9 @@
       <Project>{46F2F4B1-6424-431F-8D30-F9D5EB465022}</Project>
       <Name>portaudio-sharp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming\Commons.Media.Streaming.csproj">
-      <Project>{40FBE4F7-5F45-4E15-A198-436866ABEC12}</Project>
-      <Name>Commons.Media.Streaming</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Commons.Media.Synthesis.Common.Desktop.csproj">
-      <Project>{4E9DA0E3-53ED-491E-B270-57FC7C451F56}</Project>
-      <Name>Commons.Media.Synthesis.Common.Desktop</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commons.Media.Streaming\" />
+    <Folder Include="Commons.Media.Streaming.PortAudio\" />
   </ItemGroup>
 </Project>

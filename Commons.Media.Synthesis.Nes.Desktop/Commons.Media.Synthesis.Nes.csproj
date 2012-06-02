@@ -34,21 +34,29 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Commons.Media.Synthesis.Nes\NesApu.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\NesCpu.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\SoundModule.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\NesAudioQueue.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\NesCallbacks.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\NesPlayer.cs" />
-    <Compile Include="Commons.Media.Synthesis.Nes\NesMediaBufferGenerator.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\svn\commons-music-prog\synthesis\Commons.Media.Streaming\Commons.Media.Streaming.csproj">
-      <Project>{40FBE4F7-5F45-4E15-A198-436866ABEC12}</Project>
-      <Name>Commons.Media.Streaming</Name>
+    <ProjectReference Include="..\Commons.Media.Streaming.Desktop\Commons.Media.Streaming.PortAudio.csproj">
+      <Project>{DA8A1019-D5F2-4DD2-93FC-E981FE356390}</Project>
+      <Name>Commons.Media.Streaming.PortAudio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commons.Media.Synthesis.Nes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesApu.cs">
+      <Link>Commons.Media.Synthesis.Nes\NesApu.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesCallbacks.cs">
+      <Link>Commons.Media.Synthesis.Nes\NesCallbacks.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesCpu.cs">
+      <Link>Commons.Media.Synthesis.Nes\NesCpu.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesMediaBufferGenerator.cs">
+      <Link>Commons.Media.Synthesis.Nes\NesMediaBufferGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\SoundModule.cs">
+      <Link>Commons.Media.Synthesis.Nes\SoundModule.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

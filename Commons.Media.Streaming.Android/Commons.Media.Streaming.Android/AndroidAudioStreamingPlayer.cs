@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Android.Media;
+using Commons.Media.Streaming;
 
 using Encoding = Android.Media.Encoding;
 
 namespace Commons.Media.Synthesis.Droid
 {
-	public class QueuedAudioPlayer : IDisposable
+	public class AndroidAudioStreamingPlayer
 	{
 		class PlayerException : Exception
 		{
@@ -42,10 +43,9 @@ namespace Commons.Media.Synthesis.Droid
 		AudioTrack audio;
 		bool pause, finish;
 		AutoResetEvent pause_handle = new AutoResetEvent (false);
-		int x;
 		TimeSpan total_time, current;
 		Thread player_thread;
-		IAudioQueue q;
+		IMediaBufferGenerator gen;
 
 		ChannelConfiguration ToChannelConfiguration (byte channels)
 		{
@@ -59,11 +59,11 @@ namespace Commons.Media.Synthesis.Droid
 			}
 		}
 
-		public QueuedAudioPlayer (IAudioQueue queue, AudioParameters parameters, TimeSpan totalTime)
+		public AndroidAudioStreamingPlayer (IMediaBufferGenerator generator, AudioParameters parameters, TimeSpan totalTime)
 		{
-			if (queue == null)
-				throw new ArgumentNullException ("queue");
-			q = queue;
+			if (generator == null)
+				throw new ArgumentNullException ("generator");
+			gen = generator;
 
 			min_buf_size = AudioTrack.GetMinBufferSize (
 				parameters.SamplesPerSecond / CompressionRate * 2,
@@ -110,11 +110,7 @@ namespace Commons.Media.Synthesis.Droid
 				return; // too short seek operations
 			last_seek = DateTime.Now;
 			SpinWait.SpinUntil (() => !pause);
-			q.BeginSeek (
-				position,
-				(result) => { q.EndSeek (result); current = position; },
-				null
-			);
+			gen.SeekTo (position);
 		}
 
 		public void Stop ()
@@ -158,13 +154,8 @@ namespace Commons.Media.Synthesis.Droid
 
 		void DoRun ()
 		{
-			q.BeginSeek (
-				TimeSpan.Zero,
-				(result) => { q.EndSeek (result); current = TimeSpan.Zero; },
-				null
-			);
+			gen.SeekTo (TimeSpan.Zero);
 			Status = PlayerStatus.Playing;
-			x = 0;
 			audio.Play ();
 			TimeSpan nextSleep = TimeSpan.Zero, nextDelay = TimeSpan.Zero;
 			while (!finish) {
@@ -178,10 +169,10 @@ namespace Commons.Media.Synthesis.Droid
 				current += nextDelay;
 				nextSleep = nextDelay;
 				nextDelay = TimeSpan.FromMilliseconds (500); // error
-				q.BeginGetNextSample ((result) => {
-					var sample = q.EndGetNextSample (result);
+				gen.BufferArrived += sample => {
 					nextDelay = sample.Duration;
-					var size = sample.Buffer.Count;
+					var buffer = sample.GetBuffer<byte> ();
+					var size = buffer.Count;
 					if (current == total_time) {
 						finish = true;
 						if (size < 0)
@@ -194,15 +185,15 @@ namespace Commons.Media.Synthesis.Droid
 
 						// downgrade bitrate
 						int actualSize = (int)size * 2 / CompressionRate;
-						var buffer = sample.Buffer.Array;
+						var bytes = buffer.Array;
 						for (int i = 1; i < actualSize; i++)
-							buffer [i] = buffer [i * CompressionRate / 2 + (CompressionRate / 2) - 1];
+							bytes [i] = bytes [i * CompressionRate / 2 + (CompressionRate / 2) - 1];
 						if (size > 0) {
 							audio.Flush ();
-							audio.Write (buffer, 0, actualSize);
+							audio.Write (bytes, 0, actualSize);
 						}
 					}
-				}, null);
+				};
 			}
 			audio.Flush ();
 			audio.Stop ();
@@ -218,4 +209,3 @@ namespace Commons.Media.Synthesis.Droid
 		}
 	}
 }
-

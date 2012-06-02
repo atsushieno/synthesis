@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1EDCD3C5-FDD2-40CE-8FAD-366F7BF5F5D8}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Commons.Media.Synthesis.Nes</RootNamespace>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>Commons.Media.Synthesis.Nes</AssemblyName>
+    <TargetFrameworkVersion>v1.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Commons.Media.Synthesis.Nes.Android\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesApu.cs">
+      <Link>Commons.Media.Synthesis.Nes.Android\NesApu.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesCallbacks.cs">
+      <Link>Commons.Media.Synthesis.Nes.Android\NesCallbacks.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesCpu.cs">
+      <Link>Commons.Media.Synthesis.Nes.Android\NesCpu.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\NesMediaBufferGenerator.cs">
+      <Link>Commons.Media.Synthesis.Nes.Android\NesMediaBufferGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\Commons.Media.Synthesis.Nes\Commons.Media.Synthesis.Nes\SoundModule.cs">
+      <Link>Commons.Media.Synthesis.Nes.Android\SoundModule.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commons.Media.Streaming.Android\Commons.Media.Streaming.Android.csproj">
+      <Project>{29F07D4A-86F1-4615-BFAD-2097DF99986E}</Project>
+      <Name>Commons.Media.Streaming.Android</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

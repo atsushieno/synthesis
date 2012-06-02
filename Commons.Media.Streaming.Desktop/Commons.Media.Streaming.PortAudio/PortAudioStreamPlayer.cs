@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Commons.Media.PortAudio;
 using Commons.Media.Streaming;
 
-namespace Commons.Media.Synthesis.Desktop
+namespace Commons.Media.Streaming.PortAudio
 {
 	public class PortAudioStreamPlayer : AbstractBufferedMediaPlayer
 	{
