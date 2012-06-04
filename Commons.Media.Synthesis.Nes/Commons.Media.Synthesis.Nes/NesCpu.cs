@@ -701,7 +701,7 @@ namespace Commons.Media.Synthesis.Nes
 			Action<bool> setC = (bool c) => { p = (byte) ((p & ~(Status.C)) | (c ? 1 : 0)); };
 
 			// addressing actions
-			var addressing_actions = new Action<int> [((AddressingMode []) Enum.GetValues (typeof (AddressingMode))).Select (v => (int) v).Max () + 1];
+			var addressing_actions = new Action<int> [(from f in typeof (AddressingMode).GetFields () select (int) (AddressingMode) f.GetValue (null)).Max () + 1];
 			addressing_actions [(int) AddressingMode.Implied] = (ticks) => { Tick (ticks); };
 			addressing_actions [(int) AddressingMode.Immediate] = (ticks) => { Tick (ticks); ea = pc++; };
 			addressing_actions [(int) AddressingMode.Absolute] = (ticks) => { Tick (ticks); ea = (ushort) (memory [pc] + (memory [pc + 1] << 8)); pc++; pc++; };
@@ -758,7 +758,7 @@ namespace Commons.Media.Synthesis.Nes
 				ea = (ushort) (memory [tmp] + (memory [tmp + 1] << 8));
 				};
 
-			var operator_actions = new Action<OpCode, Action<int>> [((AssemblyOperations []) Enum.GetValues (typeof (AssemblyOperations))).Select (v => (int) v).Max () + 1];
+			var operator_actions = new Action<OpCode, Action<int>> [(from f in typeof (AssemblyOperations).GetFields () select (int) (AssemblyOperations) f.GetValue (null)).Max () + 1];
 			
 			// operator actions
 			

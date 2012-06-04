@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Phone", "Commons.Media.Synthesis.Phone\Commons.Media.Synthesis.Phone.csproj", "{2FC5E331-E606-4C81-87F2-4F1195FB49FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Streaming.Phone", "Commons.Media.Streaming.Phone\Commons.Media.Streaming.Phone.csproj", "{78C1AE6B-92C7-4BC3-AF61-C24C013AE435}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Common.Phone", "Commons.Media.Synthesis.Common.Phone.csproj", "{C6BAD87F-70AF-4F12-BE7B-47A40604DF0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.Media.Synthesis.Nes.Phone", "Commons.Media.Synthesis.Nes.Phone\Commons.Media.Synthesis.Nes.Phone.csproj", "{2FF38F3A-8D0F-48AF-A0FF-EC7CD549BBEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2FC5E331-E606-4C81-87F2-4F1195FB49FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FC5E331-E606-4C81-87F2-4F1195FB49FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FC5E331-E606-4C81-87F2-4F1195FB49FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FC5E331-E606-4C81-87F2-4F1195FB49FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6BAD87F-70AF-4F12-BE7B-47A40604DF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6BAD87F-70AF-4F12-BE7B-47A40604DF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6BAD87F-70AF-4F12-BE7B-47A40604DF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6BAD87F-70AF-4F12-BE7B-47A40604DF0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C1AE6B-92C7-4BC3-AF61-C24C013AE435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C1AE6B-92C7-4BC3-AF61-C24C013AE435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C1AE6B-92C7-4BC3-AF61-C24C013AE435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C1AE6B-92C7-4BC3-AF61-C24C013AE435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF38F3A-8D0F-48AF-A0FF-EC7CD549BBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF38F3A-8D0F-48AF-A0FF-EC7CD549BBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF38F3A-8D0F-48AF-A0FF-EC7CD549BBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF38F3A-8D0F-48AF-A0FF-EC7CD549BBEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
