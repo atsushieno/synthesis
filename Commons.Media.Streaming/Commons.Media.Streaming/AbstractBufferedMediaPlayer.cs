@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Commons.Media.Streaming
 {
@@ -10,16 +11,30 @@ namespace Commons.Media.Streaming
 			if (bufferGenerator == null)
 				throw new ArgumentNullException ("bufferGenerator");
 			generator = bufferGenerator;
+			generator.BufferArrived += BufferArrived;
 		}
 		
 		IMediaBufferGenerator generator;
 		Queue<IMediaSample> samples = new Queue<IMediaSample> ();
+		ManualResetEvent wait_sample_handle = new ManualResetEvent (false);
+		
 		object lock_obj = new object ();
 		TimeSpan position;
+		int max_buf_count = 0x400;
 
 		public IMediaBufferGenerator BufferGenerator {
 			get { return generator; }
 		}
+		
+		public int MaxBufferCount {
+			get { return max_buf_count; }
+			set {
+				if (value <= 0)
+					throw new ArgumentOutOfRangeException ("MaxBufferSize must be greater than 0");
+				max_buf_count = value;
+			}
+		}
+		
 		public BufferEmptyOperation BufferEmptyOperation { get; set; }
 		public event Action BufferFull;
 		public BufferFullOperation BufferFullOperation { get; set; }
@@ -96,6 +111,26 @@ namespace Commons.Media.Streaming
 		
 		public TimeSpan TotalTime {
 			get { return generator.TotalTime; }
+		}
+
+		void BufferArrived (IMediaSample sample)
+		{
+			samples.Enqueue (sample);
+			if (samples.Count == 1)
+				wait_sample_handle.Set ();
+			if (samples.Count == MaxBufferCount)
+				if (BufferFull != null)
+					BufferFull ();
+		}
+		
+		protected IMediaSample GetNextSample ()
+		{
+			if (samples.Count > 0)
+				return samples.Dequeue ();
+			if (BufferEmpty != null)
+				this.BufferEmpty ();
+			wait_sample_handle.WaitOne ();
+			return GetNextSample (); // loop
 		}
 	}
 }
